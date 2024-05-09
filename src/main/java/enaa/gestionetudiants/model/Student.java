@@ -3,19 +3,16 @@ package enaa.gestionetudiants.model;
 public class Student {
     private int id;
     private String name;
-    private String studentId;
     private String email;
     private String phoneNumber;
     private String address;
 
     public Student() {
-        // Constructeur par défaut nécessaire pour Spring MVC
     }
 
-    public Student(int id, String name, String studentId, String email, String phoneNumber, String address) {
+    public Student(int id, String name, String email, String phoneNumber, String address) {
         this.id = id;
         this.name = name;
-        this.studentId = studentId;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -37,13 +34,7 @@ public class Student {
         this.name = name;
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
 
     public String getEmail() {
         return email;
@@ -74,7 +65,6 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", studentId='" + studentId + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
