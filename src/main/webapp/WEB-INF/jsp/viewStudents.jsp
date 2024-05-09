@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des étudiants</title>
+    <link href="style.css">
 </head>
 <body>
 <h1>Liste des étudiants</h1>
