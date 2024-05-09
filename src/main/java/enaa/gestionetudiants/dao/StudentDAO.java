@@ -1,7 +1,5 @@
 package enaa.gestionetudiants.dao;
 
-import com.enaa.gestionetudiants.model.Student;
-
 import java.util.List;
 
 public interface StudentDAO {

@@ -1,7 +1,5 @@
 package enaa.gestionetudiants.controller;
 
-import com.enaa.gestionetudiants.model.Student;
-import enaa.gestionetudiants.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,7 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping("/students")
-    public String showStudentsPage(Model model) {
+    public <Student> String showStudentsPage(Model model) {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students", students);
         return "viewStudents";
