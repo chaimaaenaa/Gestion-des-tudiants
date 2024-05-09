@@ -5,26 +5,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("")
 public class StudentController {
-    private final List<Student> students =new ArrayList<>();
-    private int nextId = 1 ;
-
-    @PostConstructor
+    private final List<Student> students = new ArrayList<>();
+    private int  nextId = 1;
+    @PostConstruct
     public void init() {
-        students.add(new Student(1, "chaimaa", "chaimaa@gmail.com", "060908776", "Beni Mellal"));
+        students.add(new Student(1, "name",  "email",  "phoneNumber",  "address"));
     }
-//    @Autowired
-//    private StudentService studentService;
 
     @GetMapping("/students")
-    public String showStudentsPage(Model model) {
+    public String allStudent(Model model) {
+        System.out.println("ooohgfdeefrgrgoooooooooooooooooooooooooo");
         model.addAttribute("students", students);
         return "viewStudents";
+    }
+
+    @PostMapping("/add-student")
+    public String addStudent(@ModelAttribute("student") Student student) {
+        student.setId(nextId++);
+        students.add(student);
+        return "redirect:/students";
     }
 
     @GetMapping("/add-student")
@@ -33,42 +39,43 @@ public class StudentController {
         return "addStudent";
     }
 
-//    @PostMapping("/add-student")
-//    public String addStudent(@ModelAttribute("student") @Valid Student student, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "addStudent";
-//        }
-//        studentService.addStudent(student);
-//        return "redirect:/students";
-//    }
-//
-//    @GetMapping("/edit-student/{id}")
-//    public String showEditStudentForm(@PathVariable("id") int id, Model model) {
-//        Student student = studentService.getStudentById(id);
-//        model.addAttribute("student", student);
-//        return "editStudent";
-//    }
-//
-//    @PostMapping("/edit-student/{id}")
-//    public String updateStudent(@PathVariable("id") int id, @ModelAttribute("student") @Valid Student student,
-//                                BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "editStudent";
-//        }
-//        studentService.updateStudent(student);
-//        return "redirect:/students";
-//    }
-//
-//    @GetMapping("/delete-student/{id}")
-//    public String showDeleteStudentConfirmation(@PathVariable("id") int id, Model model) {
-//        Student student = studentService.getStudentById(id);
-//        model.addAttribute("student", student);
-//        return "deleteStudent";
-//    }
-//
-//    @PostMapping("/delete-student/{id}")
-//    public String deleteStudent(@PathVariable("id") int id) {
-//        studentService.deleteStudent(id);
-//        return "redirect:/students";
-//    }
+    @GetMapping("/edit-student/{id}")
+    public String showEditStudentForm(@PathVariable("id") int id, Model model) {
+        Student student = findStudentById(id);
+        if (student != null) {
+            model.addAttribute("student", student);
+            return "editStudent";
+        }
+        return "redirect:/students";
+    }
+
+    @PostMapping("/edit-student/{id}")
+    public String updateStudent(@PathVariable("id") int id, @ModelAttribute("student") Student updatedStudent) {
+        Student existingStudent = findStudentById(id);
+        if (existingStudent != null) {
+            existingStudent.setName(updatedStudent.getName());
+            existingStudent.setEmail(updatedStudent.getEmail());
+            existingStudent.setPhoneNumber(updatedStudent.getPhoneNumber());
+            existingStudent.setAddress(updatedStudent.getAddress());
+        }
+        return "redirect:/students";
+    }
+
+    @GetMapping("/delete-student/{id}")
+    public String deleteStudent(@PathVariable("id") int id) {
+        Student student = findStudentById(id);
+        if (student != null) {
+            students.remove(student);
+        }
+        return "redirect:/students";
+    }
+
+    private Student findStudentById(int id) {
+        for (Student student : students) {
+            if (student.getId() == id) {
+                return student;
+            }
+        }
+        return null;
+    }
 }

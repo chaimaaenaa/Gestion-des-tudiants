@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des Étudiants</title>
+    <link href="/static/css/style.css">
 </head>
 <body>
 <h1>Liste des Étudiants</h1>
