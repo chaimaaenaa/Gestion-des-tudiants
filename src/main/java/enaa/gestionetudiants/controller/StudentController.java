@@ -13,15 +13,15 @@ import java.util.List;
 @RequestMapping("")
 public class StudentController {
     private final List<Student> students = new ArrayList<>();
-    private int  nextId = 1;
+    private int nextId = 1;
+
     @PostConstruct
     public void init() {
-        students.add(new Student(1, "name",  "email",  "phoneNumber",  "address"));
+        students.add(new Student(nextId++, "name", "email", "phoneNumber", "address"));
     }
 
     @GetMapping("/students")
     public String allStudent(Model model) {
-        System.out.println("ooohgfdeefrgrgoooooooooooooooooooooooooo");
         model.addAttribute("students", students);
         return "viewStudents";
     }

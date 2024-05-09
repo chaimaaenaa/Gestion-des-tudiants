@@ -1,22 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Étudiants</title>
-    <link href="/static/css/style.css">
+    <title>Liste des étudiants</title>
 </head>
 <body>
-<h1>Liste des Étudiants</h1>
-<table>
+<h1>Liste des étudiants</h1>
+<table border="1">
     <thead>
     <tr>
         <th>ID</th>
         <th>Nom</th>
-        <th>E-mail</th>
-        <th>Numéro de Téléphone</th>
+        <th>Email</th>
+        <th>Numéro de téléphone</th>
         <th>Adresse</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -27,9 +26,15 @@
             <td>${student.email}</td>
             <td>${student.phoneNumber}</td>
             <td>${student.address}</td>
+            <td>
+                <a href="/edit-student/${student.id}">Modifier</a>
+                <a href="/delete-student/${student.id}">Supprimer</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+<button><a href="${pageContext.request.contextPath}/add-student">Add</a> </button>
+
 </body>
 </html>
