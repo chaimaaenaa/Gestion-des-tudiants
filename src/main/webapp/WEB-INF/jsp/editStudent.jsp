@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Modifier un étudiant</h1>
-<form action="/edit-student/${student.id}" method="post">
+<form action="${pageContext.request.contextPath}/edit-student/-student" method="post">
     <label for="name">Nom:</label><br>
     <input type="text" id="name" name="name" value="${student.name}"><br>
     <label for="email">Email:</label><br>

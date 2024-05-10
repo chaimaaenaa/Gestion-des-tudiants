@@ -26,6 +26,12 @@ public class StudentController {
         return "viewStudents";
     }
 
+    @GetMapping("/add-student")
+    public String showAddStudentForm(Model model) {
+        model.addAttribute("student", new Student());
+        return "addStudent";
+    }
+
     @PostMapping("/add-student")
     public String addStudent(@ModelAttribute("student") Student student) {
         student.setId(nextId++);
@@ -33,11 +39,6 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    @GetMapping("/add-student")
-    public String showAddStudentForm(Model model) {
-        model.addAttribute("student", new Student());
-        return "addStudent";
-    }
 
     @GetMapping("/edit-student/{id}")
     public String showEditStudentForm(@PathVariable("id") int id, Model model) {

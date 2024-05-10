@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Ajouter un étudiant</h1>
-<form action="/add-student" method="post">
+<form action="${pageContext.request.contextPath}/add-student" method="post">//tatsawb lpath dial app (http://localhost:8080/Etudiants_gestion_war_exploded/add-student) smiya dyal projet
     <label for="id">Id:</label><br>
     <input type="text" id="id" name="id"><br>
     <label for="name">Nom:</label><br>
