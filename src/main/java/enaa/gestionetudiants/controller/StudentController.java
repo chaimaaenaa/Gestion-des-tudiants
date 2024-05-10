@@ -62,6 +62,7 @@ public class StudentController {
         return "redirect:/students";
     }
 
+
     @GetMapping("/delete-student/{id}")
     public String deleteStudent(@PathVariable("id") int id) {
         Student student = findStudentById(id);

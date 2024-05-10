@@ -29,8 +29,8 @@
             <td>${student.phoneNumber}</td>
             <td>${student.address}</td>
             <td>
-                <a href="/edit-student/${student.id}">Modifier</a>
-                <a href="/delete-student/${student.id}">Supprimer</a>
+                <a href="${pageContext.request.contextPath}/edit-student/${student.id}">Modifier</a>
+                <a href="${pageContext.request.contextPath}/delete-student/${student.id}">Supprimer</a>
             </td>
         </tr>
     </c:forEach>
