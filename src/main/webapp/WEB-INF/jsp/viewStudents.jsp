@@ -53,21 +53,36 @@
         }
 
         a {
-            color: #007bff;
+            color: #ffffff;
             text-decoration: none;
         }
 
         button {
             margin-top: 20px;
-            background-color: #007bff;
-            color: #fff;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
         }
 
+        .btn-edit {
+            background-color: #ffc458;
+            color: #fff;
+            margin-left: 20px;
+        }
+
+        .btn-delete {
+            background-color: #ba4242;
+            color: #fff;
+            margin-left: 80px;
+        }
+
+        .btn-add {
+            background-color: #6ec56e;
+            color: #fff;
+        }
+
         button:hover {
-            background-color: #0056b3;
+            opacity: 0.8;
         }
 
         /* Navbar */
@@ -135,14 +150,18 @@
                 <td>${student.phoneNumber}</td>
                 <td>${student.address}</td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/edit-student/${student.id}">Modifier</a>
-                    <a href="${pageContext.request.contextPath}/delete-student/${student.id}">Supprimer</a>
+                    <a href="${pageContext.request.contextPath}/edit-student/${student.id}">
+                        <button class="btn-edit">Modifier</button>
+                    </a>
+                    <a href="${pageContext.request.contextPath}/delete-student/${student.id}">
+                        <button class="btn-delete">Supprimer</button>
+                    </a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <button><a href="${pageContext.request.contextPath}/add-student">Ajouter un étudiant</a></button>
+    <button class="btn-add"><a href="${pageContext.request.contextPath}/add-student">Ajouter un étudiant</a></button>
 </main>
 
 <footer>
